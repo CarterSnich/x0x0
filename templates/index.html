@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>x0x0</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+	</head>
+	<body>
+		<div id="app">
+			<div
+				id="drop-target"
+				:class="{hide: !showDropTarget}"
+				@dragleave.prevent="showDropTarget = false"
+				@dragenter.prevent
+				@dragover.prevent
+				@drop.prevent="onFileDrop"
+			>
+				Drop to upload
+			</div>
+
+			<div
+				id="table-wrapper"
+				@dragover.prevent="showDropTarget = true"
+			>
+				<table>
+					<thead>
+						<tr>
+							<th>File name</th>
+							<th>File size</th>
+							<th>MIME type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="file in uploads">
+							<td>
+								<a
+									:href="file.url"
+									download
+								>
+									${ file.filename }
+								</a>
+							</td>
+							<td>
+								<a
+									:href="`download?url=${file.url}`"
+									target="_blank"
+									download
+								>
+									${ file.size }
+								</a>
+							</td>
+							<td>
+								<a
+									:href="file.url"
+									target="_blank"
+									download
+								>
+									${ file.mimetype }
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div id="upload-progress"></div>
+		</div>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
+	</body>
+</html>

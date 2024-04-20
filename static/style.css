@@ -1,0 +1,55 @@
+body {
+	margin: 0;
+}
+
+#app {
+	display: grid;
+}
+
+#table-wrapper {
+	height: 100vh;
+}
+
+table {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border-collapse: collapse;
+}
+
+table > thead {
+	display: none;
+}
+
+table tr:nth-child(even) {
+	background-color: rgb(220, 220, 220);
+}
+
+table tr:hover {
+	background-color: rgb(180, 180, 180);
+}
+
+table td {
+	padding: 0.25rem;
+}
+
+table a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#drop-target {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(8px);
+}
+
+#drop-target.hide {
+	display: none;
+}
